@@ -22,8 +22,8 @@ Then go to `_meta/variables/s-variables-common.json` and replace `es_host`'s val
 
 ### Local Test
 
-    $ cd sat
-    $ sls function run
+    $ cd sat/root
+    $ sls function run -s dev
 
 ### Deploy:
 
