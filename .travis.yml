@@ -1,21 +1,23 @@
 language: node_js
 node_js:
-  - "4"
+  - '4'
+
+env:
+  - CI=true
 
 before_install:
   - npm install -g serverless@0.5.3
   - mkdir -p ~/.aws
   - echo '[travis]' > ~/.aws/credentials
-  - echo 'aws_access_key_id = '"$AWS_KEY"'' >> ~/.aws/credentials
-  - echo 'aws_secret_access_key = '"$AWS_SECRET"'' >> ~/.aws/credentials
+  - echo 'aws_access_key_id='"$AWS_KEY"'' >> ~/.aws/credentials
+  - echo 'aws_secret_access_key='"$AWS_SECRET"'' >> ~/.aws/credentials
 
 install:
   - npm install
   - npm run build
   - sls project init init -s dev -r us-east-1 -c -p devseed
   - |-
-    cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > cat _meta/variables/s-variables-common.json
-  - cat _meta/variables/s-variables-common.json
+    cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > _meta/variables/s-variables-common.json
 
 script:
   - echo 'nothing'
@@ -23,7 +25,8 @@ script:
 after_success:
   if [ "$TRAVIS_BRANCH" == "master" ] &&
      [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    echo "This will deploy!"
+    sls function deploy -a -s dev
+    sls endpoint deploy -a -s dev
   else
     echo "This will not deploy!"
   fi
