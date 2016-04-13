@@ -1,5 +1,4 @@
 'use strict';
-// var Boom = require('boom');
 var ejs = require('elastic.js');
 var elasticsearch = require('elasticsearch');
 
