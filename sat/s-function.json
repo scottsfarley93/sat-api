@@ -11,29 +11,54 @@
   "custom": {
     "excludePatterns": []
   },
-  "endpoints": [{
-    "path": "/",
-    "method": "GET",
-    "type": "AWS",
-    "authorizationType": "none",
-    "authorizerFunction": false,
-    "apiKeyRequired": false,
-    "requestParameters": {},
-    "requestTemplates": "$${apiGatewayRequestTemplate}",
-    "responses": {
-      "400": {
-        "statusCode": "400"
-      },
-      "default": {
-        "statusCode": "200",
-        "responseParameters": {},
-        "responseModels": {},
-        "responseTemplates": {
-          "application/json": ""
+  "endpoints": [
+    {
+      "path": "/",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${apiGatewayRequestTemplate}",
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    },
+    {
+      "path": "/",
+      "method": "POST",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": {},
+      "requestTemplates": "$${apiGatewayRequestTemplate}",
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {},
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
         }
       }
     }
-  }],
+  ],
   "events": [],
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
