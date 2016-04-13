@@ -19,9 +19,7 @@
     "authorizerFunction": false,
     "apiKeyRequired": false,
     "requestParameters": {},
-    "requestTemplates": {
-      "application/json": ""
-    },
+    "requestTemplates": "$${apiGatewayRequestTemplate}",
     "responses": {
       "400": {
         "statusCode": "400"
