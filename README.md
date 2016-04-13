@@ -1,4 +1,4 @@
-### Sattelite API
+## Sattelite API
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
@@ -13,21 +13,21 @@ This API uses Elastic Search as its engine and runs on AWS's Lambda and APIGatew
 
 To further develop a deployed version of the API, make sure you have AWS credentials with necessary access to AWS Lambda and AWS APIGateway (an admin level access will do enough):
 
-  $ npm install -g serverless@0.5.3
-  $ npm install
-  $ npm run build
+    $ npm install -g serverless@0.5.3
+    $ npm install
+    $ npm run build
 
-To Deploy:
+### Deploy:
 
-  $ sls dash deploy
+    $ sls dash deploy
 
 
 ### First time installation
 
 - Clone the repository. Then:
 
-  $ npm install -g serverless@0.5.3
-  $ npm install
-  $ npm run build
-  $ sls project init
-  $ sls dash deploy
+    $ npm install -g serverless@0.5.3
+    $ npm install
+    $ npm run build
+    $ sls project init
+    $ sls dash deploy
