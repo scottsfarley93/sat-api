@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "cd sat && npm install"
+    "build": "cd sat && npm install",
+    "devseed" "sls project init init -s dev -r us-east-1 -c"
   },
   "repository": {
     "type": "git",
