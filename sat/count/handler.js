@@ -13,8 +13,6 @@ var client = new elasticsearch.Client({
   requestTimeout: 50000  // milliseconds
 });
 
-
-
 module.exports.handler = function(event, context) {
 
   var params;
