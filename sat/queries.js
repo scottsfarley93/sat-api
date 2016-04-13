@@ -82,16 +82,16 @@ var intersects = function (params, query) {
 };
 
 var rangeQuery = function (from, to, field, query) {
-  if (from && to) {
-    return query.must(ejs.RangeQuery(field).from(from).to(to));
+  if (!_.isUndefined(from) && !_.isUndefined(to)) {
+    return query.must(ejs.RangeQuery(field).gte(from).lte(to));
   }
 
-  if (from) {
-    return query.must(ejs.RangeQuery(field).from(from));
+  if (!_.isUndefined(from)) {
+    return query.must(ejs.RangeQuery(field).gte(from));
   }
 
-  if (to) {
-    return query.must(ejs.RangeQuery(field).to(to));
+  if (!_.isUndefined(to)) {
+    return query.must(ejs.RangeQuery(field).lte(to));
   }
 };
 
@@ -106,18 +106,7 @@ module.exports = function (params, q) {
 
   params = _.omit(params, ['limit', 'page', 'skip']);
 
-  var rangeFields = [
-    {
-      from: 'date_from',
-      to: 'date_to',
-      field: 'date'
-    },
-    {
-      from: 'cloud_from',
-      to: 'cloud_to',
-      field: 'cloud_coverage'
-    }
-  ];
+  var rangeFields = {};
 
   var termFields = [
     {
@@ -147,19 +136,47 @@ module.exports = function (params, q) {
     params = _.omit(params, ['intersects']);
   }
 
-  // Range search
-  for (var i = 0; i < rangeFields.length; i++) {
-    if (_.has(params, rangeFields[i].from) || _.has(params, rangeFields[i].to)) {
+  // select parameters that have _from or _to
+  _.forEach(params, function(value, key) {
+    var field = _.replace(key, '_from', '')
+    field = _.replace(field, '_to', '')
 
-      query = rangeQuery(
-        params[rangeFields[i].from],
-        params[rangeFields[i].to],
-        rangeFields[i].field,
-        query
-      );
-      params = _.omit(params, [rangeFields[i].from, rangeFields[i].to]);
+    if (key === 'cloud_from' || key === 'cloud_to') {
+      rangeFields['cloud'] = {
+        from: 'cloud_from',
+        to: 'cloud_to',
+        field: 'cloud_coverage'
+      }
     }
-  }
+    else if (_.endsWith(key, '_from')) {
+      if (_.isUndefined(rangeFields[field])) {
+        rangeFields[field] = {}
+      }
+
+      rangeFields[field]['from'] = key
+      rangeFields[field]['field'] = field
+    } else if ( _.endsWith(key, '_to')) {
+      if (_.isUndefined(rangeFields[field])) {
+        rangeFields[field] = {}
+      }
+
+      rangeFields[field]['to'] = key
+      rangeFields[field]['field'] = field
+    } else {
+      return;
+    }
+  });
+
+  // Range search
+  _.forEach(rangeFields, function(value, key) {
+    query = rangeQuery(
+      _.get(params, _.get(value, 'from')),
+      _.get(params, _.get(value, 'to')),
+      value['field'],
+      query
+    );
+    params = _.omit(params, [_.get(value, 'from'), _.get(value, 'to')]);
+  })
 
   // Term search
   for (var i = 0; i < termFields.length; i++) {
