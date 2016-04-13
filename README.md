@@ -1,6 +1,7 @@
 ## Sattelite API
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![Build Status](https://travis-ci.org/sat-utils/sat-api.svg?branch=develop)](https://travis-ci.org/sat-utils/sat-api)
 
 *One API to search public Satellites metadata*
 
