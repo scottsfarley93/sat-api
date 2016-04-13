@@ -3,9 +3,10 @@ node_js:
   - '4'
 
 env:
-  - CI=true
-  - DEVIRN=arn:aws:iam::552819999234:role/sat-api-dev-r-IamRoleLambda-1EGIOQG7VOZ7G
-  - PRODIRN=arn:aws:iam::552819999234:role/sat-api-production-r-IamRoleLambda-UUYN0506SWZE
+  global:
+    - CI=true
+    - DEVIRN=arn:aws:iam::552819999234:role/sat-api-dev-r-IamRoleLambda-1EGIOQG7VOZ7G
+    - PRODIRN=arn:aws:iam::552819999234:role/sat-api-production-r-IamRoleLambda-UUYN0506SWZE
 
 before_install:
   - npm install -g serverless@0.5.3
