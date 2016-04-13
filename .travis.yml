@@ -15,7 +15,7 @@ before_install:
 install:
   - npm install
   - npm run build
-  - sls project init init -s dev -r us-east-1 -c -p devseed
+  - sls project init init -s dev -r us-east-1 -c -p travis
   - |-
     cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > tmp && mv tmp _meta/variables/s-variables-common.json
   - cat _meta/variables/s-variables-common.json

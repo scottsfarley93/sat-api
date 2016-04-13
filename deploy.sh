@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e # halt script on error
 
-if [ "$TRAVIS_BRANCH" == "develop" ]; then
+if [ "$TRAVIS_BRANCH" == "master" ]; then
     sls function deploy -a -s production -r us-east-1
     sls endpoint deploy -a -s production -r us-east-1
 else
