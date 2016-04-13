@@ -26,12 +26,12 @@ module.exports.handler = function(event, context) {
   if (Object.keys(event).length > 0) {
     q = queries(event, q);
   } else {
-    q.query(ejs.MatchAllQuery()).sort('date', 'desc');
+    q.query(ejs.MatchAllQuery());
   }
 
   var search_params = {
     index: process.env.ES_INDEX || 'satellites',
-    body: q,
+    body: q.sort('date', 'desc'),
     size: size,
     from: frm
   };
