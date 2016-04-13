@@ -15,18 +15,26 @@ var client = new elasticsearch.Client({
 
 module.exports.handler = function(event, context) {
 
+  var params;
+
+  if (event.method === 'GET') {
+    params = event.query;
+  } else if (event.method === 'POST') {
+    params = event.body;
+  }
+
   // Build Elastic Search Query
   var q = ejs.Request();
-  var size = (event.limit) ? event.limit : 1;
-  var page = (event.page) ? event.page: 1
+  var size = (params.limit) ? params.limit : 1;
+  var page = (params.page) ? params.page: 1
 
   // Accept legacy skip
-  page = (event.skip) ? event.skip : page;
+  page = (params.skip) ? params.skip : page;
 
   var frm = (page - 1) * size;
 
-  if (Object.keys(event).length > 0) {
-    q = queries(event, q);
+  if (Object.keys(params).length > 0) {
+    q = queries(params, q);
   } else {
     q.query(ejs.MatchAllQuery());
   }
