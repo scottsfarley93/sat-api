@@ -26,9 +26,10 @@ To further develop a deployed version of the API, make sure you have AWS credent
 
 - Clone the repository. Then:
 
-
-    $ npm install -g serverless@0.5.3
-    $ npm install
-    $ npm run build
-    $ sls project init
-    $ sls dash deploy
+```
+  $ npm install -g serverless@0.5.3
+  $ npm install
+  $ npm run build
+  $ sls project init
+  $ sls dash deploy
+```
