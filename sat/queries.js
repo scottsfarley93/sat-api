@@ -62,7 +62,7 @@ var contains = function (params, query) {
  *
  * Accepts valid geojson.
 **/
-var intersects = function (params, query) {
+var intersects = function (geojson, query) {
   // if we receive an object, assume it's GeoJSON, if not, try and parse
   if (gjv.valid(geojson)) {
     // If it is smaller than Nigeria use geohash
