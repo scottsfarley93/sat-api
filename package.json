@@ -5,6 +5,9 @@
   "author": "me",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "cd sat && npm install"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/"
