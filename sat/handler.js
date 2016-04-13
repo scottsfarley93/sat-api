@@ -32,12 +32,18 @@ module.exports.handler = function(event, context) {
     q.query(ejs.MatchAllQuery());
   }
 
+  if (q) {
+    q = q.sort('date', 'desc')
+  }
+
   var search_params = {
     index: process.env.ES_INDEX || 'satellites',
-    body: q.sort('date', 'desc'),
+    body: q,
     size: size,
     from: frm
   };
+
+  // console.log(JSON.stringify(search_params))
 
 
   client.search(search_params).then(function (body) {
