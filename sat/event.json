@@ -1,5 +1,6 @@
 {
   "limit": 1,
-  "page": 1,
-  "product_stop_time": "2016-01-17T13:58:19.752Z"
+  "skip": 1955,
+  "date_to": "2016-03-25",
+  "date_from": "2016-03-24"
 }
