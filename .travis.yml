@@ -18,6 +18,7 @@ install:
   - sls project init init -s dev -r us-east-1 -c -p devseed
   - |-
     cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > tmp && mv tmp _meta/variables/s-variables-common.json
+  - cat _meta/variables/s-variables-common.json
 
 script:
   - echo 'nothing'
