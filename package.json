@@ -7,7 +7,7 @@
   "private": false,
   "scripts": {
     "build": "cd sat && npm install",
-    "devseed": "sls project init init -s dev -r us-east-1 -c && sed -i -e 's/sat-api\"/sat-api\", \"es_host\": \"localhost:9200\"/' _meta/variables/s-variables-common.json"
+    "devseed": "sls project init -s dev -r us-east-1 -c && sed -i -e 's/sat-api\"/sat-api\", \"es_host\": \"localhost:9200\"/' _meta/variables/s-variables-common.json"
   },
   "repository": {
     "type": "git",
