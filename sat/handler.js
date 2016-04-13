@@ -19,6 +19,9 @@ module.exports.handler = function(event, context) {
   // Build Elastic Search Query
   var q = ejs.Request();
   var size = (event.limit) ? event.limit : 1;
+  var page = (event.page) ? event.page: 1
+
+  var frm = (page - 1) * size;
 
   if (Object.keys(event).length > 0) {
     q = queries(event, q);
@@ -29,7 +32,8 @@ module.exports.handler = function(event, context) {
   var search_params = {
     index: process.env.ES_INDEX || 'satellites',
     body: q,
-    size: size
+    size: size,
+    from: frm
   };
 
 
@@ -49,7 +53,7 @@ module.exports.handler = function(event, context) {
         name: "sat-api",
         license: "CC0-1.0",
         website: "https://api.developmentseed.org/satellites/",
-        page: 1,
+        page: page,
         limit: size
       },
       results: response
