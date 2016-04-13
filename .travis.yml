@@ -22,12 +22,11 @@ install:
 script:
   - echo 'nothing'
 
-after_success:
-  if [ "$TRAVIS_BRANCH" == "master" ] &&
-     [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    sls function deploy -a -s dev
-    sls endpoint deploy -a -s dev
-  else
-    echo "This will not deploy!"
-  fi
-
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./deploy.sh
+  on:
+    branch:
+      - master
+      - develop
