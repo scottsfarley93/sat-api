@@ -8,8 +8,8 @@ before_install:
 install:
   - npm install
   - npm run build
-  - npm run devseed
-  - sed -i -e 's/localhost:9200/${ES_HOST}/' _meta/variables/s-variables-common.json
+  - npm run devseed -- -p travis
+  - sed -i -e 's/localhost:9200/'"$ES_HOST"'/' _meta/variables/s-variables-common.json
 
 script:
   - cd sat && sls function run
