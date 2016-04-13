@@ -2,7 +2,7 @@
 var ejs = require('elastic.js');
 var elasticsearch = require('elasticsearch');
 
-var queries = require('./queries.js');
+var queries = require('../libs/queries.js');
 
 var client = new elasticsearch.Client({
   host: process.env.ES_HOST || 'localhost:9200',

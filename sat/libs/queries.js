@@ -1,7 +1,7 @@
 'use strict';
 
-var ejs = require('elastic.js');
 var _ = require('lodash');
+var ejs = require('elastic.js');
 var gjv = require('geojson-validation');
 
 /**
