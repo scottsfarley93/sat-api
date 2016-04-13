@@ -4,6 +4,8 @@ node_js:
 
 env:
   - CI=true
+  - DEVIRN=arn:aws:iam::552819999234:role/sat-api-dev-r-IamRoleLambda-1EGIOQG7VOZ7G
+  - PRODIRN=arn:aws:iam::552819999234:role/sat-api-production-r-IamRoleLambda-UUYN0506SWZE
 
 before_install:
   - npm install -g serverless@0.5.3
@@ -15,9 +17,12 @@ before_install:
 install:
   - npm install
   - npm run build
-  - sls project init init -s dev -r us-east-1 -c -p travis
+  - sls project init -s dev -r us-east-1 -c -p travis
+  - sls project init -s production -r us-east-1 -c -p travis
   - |-
     cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > tmp && mv tmp _meta/variables/s-variables-common.json
+    cat _meta/variables/s-variables-dev-useast1.json | jq '. + {"iamRoleArnLambda": "'"$DEVIRN"'", "resourcesStackName": "sat-api-dev-r", "apiGatewayApi": "sat-api"}' > tmp && mv tmp _meta/variables/s-variables-dev-useast1.json
+    cat _meta/variables/s-variables-production-useast1.json | jq '. + {"iamRoleArnLambda": "'"$PRODIRN"'", "resourcesStackName": "sat-api-production-r", "apiGatewayApi": "sat-api"}' > tmp && mv tmp _meta/variables/s-variables-production-useast1.json
 
 script:
   - echo 'nothing'
