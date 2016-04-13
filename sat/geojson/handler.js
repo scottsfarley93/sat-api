@@ -39,6 +39,10 @@ module.exports.handler = function(event, context) {
     q.query(ejs.MatchAllQuery());
   }
 
+  if (q) {
+    q = q.sort('date', 'desc')
+  }
+
   // console.log(JSON.stringify(q.toJSON()))
 
   var search_params = {
