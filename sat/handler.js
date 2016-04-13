@@ -21,6 +21,9 @@ module.exports.handler = function(event, context) {
   var size = (event.limit) ? event.limit : 1;
   var page = (event.page) ? event.page: 1
 
+  // Accept legacy skip
+  page = (event.skip) ? event.skip : page;
+
   var frm = (page - 1) * size;
 
   if (Object.keys(event).length > 0) {
@@ -63,6 +66,4 @@ module.exports.handler = function(event, context) {
   }, function (err) {
     return context.done(err);
   });
-
-
 };
