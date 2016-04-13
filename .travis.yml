@@ -14,7 +14,8 @@ install:
   - npm install
   - npm run build
   - sls project init init -s dev -r us-east-1 -c -p devseed
-  - sed -i -e 's/sat-api"/sat-api", "es_host": "'"$ES_HOST"'"/' _meta/variables/s-variables-common.json
+  - |-
+    cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}'
   - cat _meta/variables/s-variables-common.json
 
 script:
