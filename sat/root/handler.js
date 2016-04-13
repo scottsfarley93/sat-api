@@ -25,11 +25,11 @@ module.exports.handler = function(event, context) {
 
   // Build Elastic Search Query
   var q = ejs.Request();
-  var size = (params.limit) ? params.limit : 1;
-  var page = (params.page) ? params.page: 1
+  var size = parseInt((params.limit) ? params.limit : 1);
+  var page = parseInt((params.page) ? params.page: 1);
 
   // Accept legacy skip
-  page = (params.skip) ? params.skip : page;
+  page = parseInt((params.skip) ? params.skip : page);
 
   var frm = (page - 1) * size;
 
@@ -49,9 +49,6 @@ module.exports.handler = function(event, context) {
     size: size,
     from: frm
   };
-
-  // console.log(JSON.stringify(search_params))
-
 
   client.search(search_params).then(function (body) {
 
