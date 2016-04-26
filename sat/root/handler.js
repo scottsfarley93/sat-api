@@ -43,7 +43,7 @@ module.exports.handler = function(event, context) {
     q = q.sort('date', 'desc')
   }
 
-  console.log(JSON.stringify(q.toJSON()))
+  // console.log(JSON.stringify(q.toJSON()))
 
   var search_params = {
     index: process.env.ES_INDEX || 'sat-api',
