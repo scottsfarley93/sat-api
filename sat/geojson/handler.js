@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var ejs = require('elastic.js');
 var elasticsearch = require('elasticsearch');
 
@@ -40,7 +39,7 @@ module.exports.handler = function(event, context) {
   }
 
   if (q) {
-    q = q.sort('date', 'desc')
+    q = q.sort('date', 'desc');
   }
 
   // console.log(JSON.stringify(q.toJSON()))

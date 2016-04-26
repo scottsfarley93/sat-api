@@ -28,10 +28,10 @@ module.exports.handler = function(event, context) {
 
   var dateHistogram = function (name) {
     return ejs.DateHistogramAggregation(name + '_histogram').format('YYYY-MM-DD').interval('day');
-  }
+  };
   var termsAggregation = function (name) {
     return ejs.TermsAggregation('terms_' + name);
-  }
+  };
 
   var aggr = {
     date: dateHistogram,
@@ -42,16 +42,14 @@ module.exports.handler = function(event, context) {
     grid_square: termsAggregation,
     sensing_orbit_number: termsAggregation,
     sensing_orbit_direction: termsAggregation
-  }
+  };
 
   if (_.has(params, 'fields')) {
-    var fields = params['fields'].split(',');
+    var fields = params.fields.split(',');
 
-    console.log(fields)
     _.forEach(fields, function(field) {
-      console.log(field)
       if (_.has(aggr, field)) {
-        q.agg(aggr[field](field).field(field))
+        q.agg(aggr[field](field).field(field));
       }
     });
 
@@ -64,7 +62,7 @@ module.exports.handler = function(event, context) {
     q.query(ejs.MatchAllQuery());
   }
 
-  console.log(JSON.stringify(q.toJSON()))
+  // console.log(JSON.stringify(q.toJSON()))
 
   var search_params = {
     index: process.env.ES_INDEX || 'sat-api',
@@ -74,7 +72,6 @@ module.exports.handler = function(event, context) {
 
   client.search(search_params).then(function (body) {
 
-    var response = [];
     var count = 0;
 
     count = body.hits.total;
@@ -82,9 +79,9 @@ module.exports.handler = function(event, context) {
     var r = {
       meta: {
         found: count,
-        name: "sat-api",
-        license: "CC0-1.0",
-        website: "https://api.developmentseed.org/satellites/",
+        name: 'sat-api',
+        license: 'CC0-1.0',
+        website: 'https://api.developmentseed.org/satellites/',
       },
       counts: body.aggregations
     };
