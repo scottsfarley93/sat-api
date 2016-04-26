@@ -26,7 +26,7 @@ install:
     cat _meta/variables/s-variables-production-useast1.json | jq '. + {"iamRoleArnLambda": "'"$PRODIRN"'", "resourcesStackName": "sat-api-production-r", "apiGatewayApi": "sat-api"}' > tmp && mv tmp _meta/variables/s-variables-production-useast1.json
 
 script:
-  - echo 'nothing'
+  - npm run test
 
 deploy:
   provider: script
