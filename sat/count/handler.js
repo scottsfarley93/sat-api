@@ -67,7 +67,7 @@ module.exports.handler = function(event, context) {
   console.log(JSON.stringify(q.toJSON()))
 
   var search_params = {
-    index: process.env.ES_INDEX || 'satellites',
+    index: process.env.ES_INDEX || 'sat-api',
     body: q,
     size: 0
   };
