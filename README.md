@@ -22,8 +22,14 @@ Then go to `_meta/variables/s-variables-common.json` and replace `es_host`'s val
 
 ### Local Test
 
+with Serverless
+
     $ cd sat/root
     $ sls function run -s dev
+
+Test package:
+
+    $ npm run test
 
 ### Deploy:
 
