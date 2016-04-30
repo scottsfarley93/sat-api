@@ -20,7 +20,7 @@ var geojsonQueryBuilder = function (feature, query) {
                           .field('data_geometry')
                           .shape(shape));
   return query;
-}
+};
 
 /**
  * @apiDefine contains
@@ -75,7 +75,7 @@ var intersects = function (geojson, query) {
     } else {
       query = geojsonQueryBuilder(geojson, query);
     }
-    return query
+    return query;
   } else {
     err.invalidGeoJsonError();
   }
@@ -125,7 +125,7 @@ module.exports = function (params, q) {
       parameter: 'sensor',
       field: 'satellite_name'
     }
-  ]
+  ];
 
   // Do legacy search
   if (params.search) {
@@ -146,30 +146,30 @@ module.exports = function (params, q) {
 
   // select parameters that have _from or _to
   _.forEach(params, function(value, key) {
-    var field = _.replace(key, '_from', '')
-    field = _.replace(field, '_to', '')
+    var field = _.replace(key, '_from', '');
+    field = _.replace(field, '_to', '');
 
     if (key === 'cloud_from' || key === 'cloud_to') {
       rangeFields['cloud'] = {
         from: 'cloud_from',
         to: 'cloud_to',
         field: 'cloud_coverage'
-      }
+      };
     }
     else if (_.endsWith(key, '_from')) {
       if (_.isUndefined(rangeFields[field])) {
-        rangeFields[field] = {}
+        rangeFields[field] = {};
       }
 
-      rangeFields[field]['from'] = key
-      rangeFields[field]['field'] = field
+      rangeFields[field]['from'] = key;
+      rangeFields[field]['field'] = field;
     } else if ( _.endsWith(key, '_to')) {
       if (_.isUndefined(rangeFields[field])) {
-        rangeFields[field] = {}
+        rangeFields[field] = {};
       }
 
-      rangeFields[field]['to'] = key
-      rangeFields[field]['field'] = field
+      rangeFields[field]['to'] = key;
+      rangeFields[field]['field'] = field;
     } else {
       return;
     }
@@ -184,7 +184,7 @@ module.exports = function (params, q) {
       query
     );
     params = _.omit(params, [_.get(value, 'from'), _.get(value, 'to')]);
-  })
+  });
 
   // Term search
   for (var i = 0; i < termFields.length; i++) {
