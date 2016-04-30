@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "query": {
+    "limit": 1,
+    "search": "acquisitionDate:[2015-10-29 TO 2016-04-29] AND sceneCenterLatitude:[31.16580958786196 TO 43.866218006556394] AND sceneCenterLongitude:[-129.35302734375 TO -101.4697265625]"
+  }
+}
