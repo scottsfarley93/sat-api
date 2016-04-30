@@ -107,6 +107,49 @@ Search.prototype.buildAggregation = function () {
   };
 };
 
+Search.prototype.legacy = function (callback) {
+  var self = this;
+
+  // Add landsat to the search parameter
+  var sat = 'satellite_name:landsat';
+  if (self.params.search && self.params.search.length > 0) {
+    self.params.search = self.params.search + ' AND ' + sat;
+  } else {
+    self.params.search = sat;
+  }
+
+  var search_params = this.buildSearch();
+
+  // limit search to only landsat
+  console.log(JSON.stringify(search_params.body.toJSON()));
+
+  client.search(search_params).then(function (body) {
+    var response = [];
+    var count = 0;
+
+    count = body.hits.total;
+    for (var i = 0; i < body.hits.hits.length; i++) {
+      response.push(body.hits.hits[i]._source);
+    }
+
+    var r = {
+      meta: {
+        author: 'Development Seed',
+        results: {
+          skip: self.frm,
+          limit: self.size,
+          total: count
+        },
+      },
+      results: response
+    };
+
+    return callback(null, r);
+  }, function (err) {
+    return callback(err);
+  });
+};
+
 Search.prototype.simple = function (callback) {
   var self = this;
   var search_params = this.buildSearch();
