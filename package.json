@@ -7,7 +7,8 @@
   "private": false,
   "scripts": {
     "build": "cd sat && npm install",
-    "devseed": "sls project init init -s dev -r us-east-1 -c && sed -i -e 's/sat-api\"/sat-api\", \"es_host\": \"localhost:9200\"/' _meta/variables/s-variables-common.json"
+    "devseed": "sls project init -s dev -r us-east-1 -c && sed -i -e 's/sat-api\"/sat-api\", \"es_host\": \"localhost:9200\"/' _meta/variables/s-variables-common.json",
+    "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "aws-sdk": "^2.3.3"
+    "aws-sdk": "^2.3.3",
+    "geojson-validation": "^0.1.6",
+    "nock": "^8.0.0",
+    "tap": "^5.7.1"
   }
 }

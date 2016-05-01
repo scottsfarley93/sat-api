@@ -1,13 +1,13 @@
 ## Sattelite API
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![Build Status](https://travis-ci.org/sat-utils/sat-api.svg?branch=develop)](https://travis-ci.org/sat-utils/sat-api)
 
 *One API to search public Satellites metadata*
 
 A live version of this API is deployed to https://api.developmentseed.org/satellites.
 
 This API uses Elastic Search as its engine and runs on AWS's Lambda and APIGateway using Serverless.
-
 
 ### Develop
 
@@ -22,8 +22,14 @@ Then go to `_meta/variables/s-variables-common.json` and replace `es_host`'s val
 
 ### Local Test
 
+with Serverless
+
     $ cd sat/root
     $ sls function run -s dev
+
+Test package:
+
+    $ npm run test
 
 ### Deploy:
 
