@@ -44,6 +44,16 @@ test('root endpoint with simple POST with limit 2 should return 2 result', funct
   });
 });
 
+test('root endpoint with POST date range', function (t) {
+  var key = 'postDatRange';
+  nockBack(key, function(err, response) {
+    t.equals(response.meta.found, 454226);
+    t.equals(response.meta.limit, 1);
+    t.equals(response.results.length, 1);
+    t.end();
+  });
+});
+
 test('root endpoint POST intersects', function (t) {
   var key = 'postIntersects';
   nockBack(key, function(err, response) {

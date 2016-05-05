@@ -13,6 +13,13 @@
       "limit": 2
     }
   },
+  "postDatRange": {
+    "method": "POST",
+    "body": {
+      "date_from": "2015-11-05",
+      "date_to": "2016-05-05"
+    }
+  },
   "postIntersects": {
     "method": "POST",
     "body": {
