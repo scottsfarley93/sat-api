@@ -13,6 +13,13 @@
       "limit": 2
     }
   },
+  "simplePostLimit2WithFields": {
+    "method": "POST",
+    "body": {
+      "limit": 2,
+      "fields": "date,thumbnail"
+    }
+  },
   "postDatRange": {
     "method": "POST",
     "body": {

@@ -1,6 +1,7 @@
 'use strict';
 process.env.ES_HOST = 'localhost:9200';
 
+var _ = require('lodash');
 var nock = require('nock');
 var test = require('tap').test;
 var handler = require('../sat/root/handler').handler;
@@ -28,9 +29,24 @@ test('root endpoint with simple GET/POST should return 1 result', function (t) {
     nockBack(key, function(err, response) {
       t.equals(response.meta.limit, 1);
       t.equals(response.results.length, 1);
+      t.ok(_.has(response.results[0], 'scene_id'));
       if (index === keys.length - 1) {
         t.end();
       }
+    });
+  });
+});
+
+test('root endpoint with simple GET/POST should return 1 result', function (t) {
+  var keys = ['simplePostLimit2WithFields'];
+  keys.forEach(function(key) {
+    nockBack(key, function(err, response) {
+      t.equals(response.meta.limit, 2);
+      t.equals(response.results.length, 2);
+      t.notOk(_.has(response.results[0], 'scene_id'));
+      t.ok(_.has(response.results[0], 'date'));
+      t.ok(_.has(response.results[0], 'thumbnail'));
+      t.end();
     });
   });
 });
@@ -73,4 +89,3 @@ test('root endpoint GET intersects with no match', function (t) {
     t.end();
   });
 });
-
