@@ -39,6 +39,15 @@ var Search = function (event) {
 };
 
 Search.prototype.buildSearch = function () {
+
+  var fields;
+
+  // if fields are included remove it from params
+  if (_.has(this.params, 'fields')) {
+    fields = this.params.fields;
+    this.params = _.omit(this.params, ['fields']);
+  }
+
   if (Object.keys(this.params).length > 0) {
     this.q = queries(this.params, this.q);
   } else {
@@ -55,7 +64,8 @@ Search.prototype.buildSearch = function () {
     index: process.env.ES_INDEX || 'sat-api',
     body: this.q,
     size: this.size,
-    from: this.frm
+    from: this.frm,
+    _source: fields
   };
 };
 
