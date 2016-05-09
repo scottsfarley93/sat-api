@@ -83,11 +83,11 @@ var intersects = function (geojson, query) {
 
 var rangeQuery = function (from, to, field, query) {
   if (!_.isUndefined(from) && _.isString(from)) {
-    from = _.lowerCase(from);
+    from = _.toLower(from);
   }
 
   if (!_.isUndefined(to) && _.isString(to)) {
-    to = _.lowerCase(to);
+    to = _.toLower(to);
   }
 
   if (!_.isUndefined(from) && !_.isUndefined(to)) {
