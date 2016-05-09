@@ -15,6 +15,7 @@
     "url": "git://github.com/"
   },
   "dependencies": {
+    "lodash": "^4.11.2",
     "serverless-cors-plugin": "^0.4.1"
   },
   "devDependencies": {
