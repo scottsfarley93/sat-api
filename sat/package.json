@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "elastic.js": "^1.2.0",
-    "elasticsearch": "^8.2.0",
-    "geojson-validation": "^0.1.6",
-    "lodash": "^4.10.0"
+    "sat-api-lib": "^0.2.0"
   }
 }

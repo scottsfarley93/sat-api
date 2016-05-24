@@ -1,6 +1,6 @@
 'use strict';
 
-var Search = require('../libs/search.js');
+var Search = require('sat-api-lib');
 
 module.exports.handler = function(event, context) {
   var search = new Search(event);
