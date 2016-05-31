@@ -1,8 +1,8 @@
 {
   "name": "sat-api",
   "version": "0.0.1",
-  "description": "A Serverless Project and its Serverless Plugin dependencies.",
-  "author": "me",
+  "description": "One API to search public Satellite metadata using AWS' APIGateway",
+  "author": "Development Seed",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/"
+    "url": "git+https://github.com/sat-utils/sat-api.git"
   },
   "dependencies": {
     "lodash": "^4.11.2",
