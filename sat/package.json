@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sat-api-lib": "^0.2.0"
+    "sat-api-lib": "^0.3.1"
   }
 }
