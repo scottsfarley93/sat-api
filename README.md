@@ -13,40 +13,24 @@ This API uses Elastic Search as its engine and runs on AWS's Lambda and APIGatew
 
 To further develop a deployed version of the API, make sure you have AWS credentials with necessary access to AWS Lambda and AWS APIGateway (an admin level access will do enough):
 
-    $ npm install -g serverless@0.5.3
+    $ npm install -g serverless@beta
     $ npm install
-    $ npm run build
-    $ npm run devseed
 
-Then go to `_meta/variables/s-variables-common.json` and replace `es_host`'s value with the url to the ElasticSearch instance
+Make `.env` file and `ES_HOST=example.com/blahblahblah` to the file
 
 ### Local Test
-
-with Serverless
-
-    $ cd sat/root
-    $ sls function run -s dev
-
-Test package:
 
     $ npm run test
 
 ### Deploy:
 
-`develop` branch is automatically deployed to `dev` staging and `master` is deployed to `production` staging which is accessible at https://api.developmentseed.org/satellites
+locally:
 
+    $ serverless deploy
 
-### First time installation
+`develop` branch is deployed to staging.
 
-- Clone the repository. Then:
-
-```
-  $ npm install -g serverless@0.5.3
-  $ npm install
-  $ npm run build
-  $ sls project init
-  $ sls dash deploy
-```
+`master` is deployed to production.
 
 ### About
 The Sat API was made by [Development Seed](http://developmentseed.org).
