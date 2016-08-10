@@ -1,13 +1,11 @@
 {
   "name": "sat-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "One API to search public Satellite metadata using AWS' APIGateway",
   "author": "Development Seed",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "cd sat && npm install",
-    "devseed": "sls project init -s dev -r us-east-1 -c && sed -i -e 's/sat-api\"/sat-api\", \"es_host\": \"localhost:9200\"/' _meta/variables/s-variables-common.json",
     "test": "tap test/*.js"
   },
   "repository": {
@@ -15,13 +13,12 @@
     "url": "git+https://github.com/sat-utils/sat-api.git"
   },
   "dependencies": {
-    "lodash": "^4.11.2",
-    "serverless-cors-plugin": "^0.4.1"
+    "node-env-file": "^0.1.8",
+    "sat-api-lib": "^0.3.1"
   },
   "devDependencies": {
-    "aws-sdk": "^2.3.3",
     "geojson-validation": "^0.1.6",
     "nock": "^8.0.0",
-    "tap": "^5.7.1"
+    "tap": "^6.3.0"
   }
 }

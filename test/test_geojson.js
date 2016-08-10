@@ -4,7 +4,7 @@ process.env.ES_HOST = 'localhost:9200';
 var nock = require('nock');
 var test = require('tap').test;
 var gjv = require('geojson-validation');
-var handler = require('../sat/geojson/handler').handler;
+var handler = require('../endpoints').geojson;
 var payload = require('./events/geojson.json');
 
 

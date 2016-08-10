@@ -3,7 +3,7 @@ process.env.ES_HOST = 'localhost:9200';
 
 var nock = require('nock');
 var test = require('tap').test;
-var handler = require('../sat/count/handler').handler;
+var handler = require('../endpoints').count;
 var payload = require('./events/count.json');
 
 
