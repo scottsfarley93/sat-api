@@ -4,7 +4,7 @@ process.env.ES_HOST = 'localhost:9200';
 var _ = require('lodash');
 var nock = require('nock');
 var test = require('tap').test;
-var handler = require('../sat/root/handler').handler;
+var handler = require('../endpoints').simple;
 var payload = require('./events/root.json');
 
 
