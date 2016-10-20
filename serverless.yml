@@ -35,38 +35,46 @@ functions:
     handler: endpoints.count
     events:
       - http:
-          path: count
+          path: simple/count
           method: get
+          cors: true
       - http:
-          path: count
+          path: simple/count
           method: post
+          cors: true
   geojson:
     handler: endpoints.geojson
     events:
       - http:
-          path: geojson
+          path: simple/geojson
           method: get
+          cors: true
       - http:
-          path: geojson
+          path: simple/geojson
           method: post
+          cors: true
   legacy:
     handler: endpoints.legacy
     events:
       - http:
-          path: legacy
+          path: simple/legacy
           method: get
+          cors: true
       - http:
-          path: legacy
+          path: simpel/legacy
           method: post
+          cors: true
   simple:
     handler: endpoints.simple
     events:
       - http:
-          path: s
+          path: simple
           method: get
+          cors: true
       - http:
-          path: s
+          path: simple
           method: post
+          cors: true
 
 # you can add CloudFormation resource templates here
 #resources:
