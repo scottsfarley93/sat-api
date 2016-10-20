@@ -5,9 +5,6 @@
   "author": "Development Seed",
   "license": "MIT",
   "private": false,
-  "scripts": {
-    "test": "tap test/*.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sat-utils/sat-api.git"

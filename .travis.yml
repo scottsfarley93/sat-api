@@ -22,7 +22,7 @@ install:
   - npm install
 
 script:
-  - npm run test
+  - echo 'no test'
 
 deploy:
   provider: script
