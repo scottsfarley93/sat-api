@@ -5,34 +5,29 @@ node_js:
 env:
   global:
     - CI=true
-    - DEVIRN=arn:aws:iam::552819999234:role/sat-api-dev-r-IamRoleLambda-1EGIOQG7VOZ7G
-    - PRODIRN=arn:aws:iam::552819999234:role/sat-api-production-r-IamRoleLambda-UUYN0506SWZE
+    # the following are set via travis admin panel
+    # ES_HOST
+    # AWS_KEY
+    # AWS_SECRET
 
 before_install:
-  - npm install -g serverless@0.5.3
+  - npm install -g serverless@beta
   - mkdir -p ~/.aws
-  - echo '[travis]' > ~/.aws/credentials
+  - echo '$ES_HOST' > .env
+  - echo '[default]' > ~/.aws/credentials
   - echo 'aws_access_key_id='"$AWS_KEY"'' >> ~/.aws/credentials
   - echo 'aws_secret_access_key='"$AWS_SECRET"'' >> ~/.aws/credentials
 
 install:
   - npm install
-  - npm run build
-  - sls project init -s dev -r us-east-1 -c -p travis
-  - sls project init -s production -r us-east-1 -c -p travis
-  - |-
-    cat _meta/variables/s-variables-common.json | jq '. + {"es_host": "'"$ES_HOST"'"}' > tmp && mv tmp _meta/variables/s-variables-common.json
-    cat _meta/variables/s-variables-dev-useast1.json | jq '. + {"iamRoleArnLambda": "'"$DEVIRN"'", "resourcesStackName": "sat-api-dev-r", "apiGatewayApi": "sat-api"}' > tmp && mv tmp _meta/variables/s-variables-dev-useast1.json
-    cat _meta/variables/s-variables-production-useast1.json | jq '. + {"iamRoleArnLambda": "'"$PRODIRN"'", "resourcesStackName": "sat-api-production-r", "apiGatewayApi": "sat-api"}' > tmp && mv tmp _meta/variables/s-variables-production-useast1.json
 
 script:
-  - npm run test
+  - echo 'no test'
 
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./deploy.sh
+  script: serverless deploy
   on:
     branch:
       - master
-      - develop

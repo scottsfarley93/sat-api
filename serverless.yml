@@ -1,0 +1,85 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    v1.docs.serverless.com
+#
+# Happy Coding!
+
+service: sat-api # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+# you can overwrite defaults here
+#defaults:
+#  stage: dev
+#  region: us-east-1
+
+# you can add packaging information here
+package:
+  exclude:
+    - .travis.yml
+    - .jshintrc
+    - README.md
+    - test
+
+functions:
+  count:
+    handler: endpoints.count
+    events:
+      - http:
+          path: simple/count
+          method: get
+          cors: true
+      - http:
+          path: simple/count
+          method: post
+          cors: true
+  geojson:
+    handler: endpoints.geojson
+    events:
+      - http:
+          path: simple/geojson
+          method: get
+          cors: true
+      - http:
+          path: simple/geojson
+          method: post
+          cors: true
+  legacy:
+    handler: endpoints.legacy
+    events:
+      - http:
+          path: simple/legacy
+          method: get
+          cors: true
+      - http:
+          path: simpel/legacy
+          method: post
+          cors: true
+  simple:
+    handler: endpoints.simple
+    events:
+      - http:
+          path: simple
+          method: get
+          cors: true
+      - http:
+          path: simple
+          method: post
+          cors: true
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    newResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: newBucket
