@@ -5,8 +5,6 @@ node_js:
 env:
   global:
     - CI=true
-    - DEVIRN=arn:aws:iam::552819999234:role/sat-api-dev-r-IamRoleLambda-1EGIOQG7VOZ7G
-    - PRODIRN=arn:aws:iam::552819999234:role/sat-api-production-r-IamRoleLambda-UUYN0506SWZE
     # the following are set via travis admin panel
     # ES_HOST
     # AWS_KEY
@@ -33,4 +31,3 @@ deploy:
   on:
     branch:
       - master
-      - develop
