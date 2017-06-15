@@ -91,6 +91,17 @@ function split(satellite, arn, maxFiles, linesPerFile, cb) {
   });
 
   newStream.on('end', () => {
+    if (lineCounter > 0) {
+      const params = {
+        Body: currentFile,
+        Bucket: bucket,
+        Key: `csv/${satellite}/${satellite}_${fileCounter}.csv`
+      };
+
+      s3.upload(params, (e, d) => console.log(e, d));
+      fileCounter += 1;
+    }
+
     currentFile.end();
     let last = fileCounter - 1;
     let first = 0;
@@ -130,9 +141,9 @@ module.exports.handler = function (event, context, cb) {
 
 local.localRun(() => {
   const payload = {
-    satellite: 'landsat',
+    satellite: 'sentinel',
     arn: 'arn:aws:states:us-east-1:552819999234:stateMachine:LandsatMetadataProcessorStateMachine-W8QZOZF1E6WN',
-    maxFiles: 1
+    maxFiles: 300
   };
 
   module.exports.handler(payload, null, (e, r) => {
