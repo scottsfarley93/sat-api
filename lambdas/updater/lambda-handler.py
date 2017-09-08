@@ -16,7 +16,7 @@ import datetime
 s3_url = "http://sentinel-s2-l1c.s3.amazonaws.com"
 es_index = 'sat-api'
 es_type = 'sentinel2'
-es_host = os.getenv("ES_HOST", "search-sat-updater-test-3ghi3tga4tezvc3trjhnyq4ize.us-east-1.es.amazonaws.com") # do not include 'http://' here
+es_host = os.getenv("ES_HOST", "") # do not include 'http://' here
 es_port = os.getenv("ES_PORT", 80)
 
 logger = logging.getLogger('sentinel.meta.update')
