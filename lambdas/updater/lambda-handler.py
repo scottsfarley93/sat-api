@@ -43,13 +43,13 @@ def lambda_handler(event, context):
         logging.info("Processing record....")
         message = record['Sns']['Message']
         print message
-        # try:
-        processRecord(message) ##
-        logging.info("Record Processed... Done.")
-        result['processed'] += 1
-        # except Exception as e:
-        #     logging.error("error:", str(e))
-        #     result['error'] += 1
+        try:
+            processRecord(message) ##
+            logging.info("Record Processed... Done.")
+            result['processed'] += 1
+        except Exception as e:
+            logging.error("error:", str(e))
+            result['error'] += 1
         result['total'] += 1
     return result
 
@@ -119,6 +119,7 @@ def elasticsearch_updater(product_dir, metadata):
     except Exception as e:
         logger.error('Unhandled error occured while writing to elasticsearch. Details: %s' % e.__str__())
 
+## For local testing
 # if __name__ == "__main__":
 #     testMessage = json.load(open("./tests/data/event_message.json", 'r'))
 #     lambda_handler(testMessage, None)
